@@ -4,6 +4,7 @@ export default function OrderSummary({
   totalPrice,
   favoritesCount,
   onClear,
+  onPlaceOrder,
 }) {
   return (
     <footer className="order-summary">
@@ -21,14 +22,24 @@ export default function OrderSummary({
         )}
       </div>
 
-      <button
-        type="button"
-        className="clear-btn"
-        onClick={onClear}
-        disabled={totalScoops === 0}
-      >
-        Clear Order
-      </button>
+      <div className="summary-actions">
+        <button
+          type="button"
+          className="order-btn"
+          onClick={onPlaceOrder}
+          disabled={totalScoops === 0}
+        >
+          Place Order
+        </button>
+        <button
+          type="button"
+          className="clear-btn"
+          onClick={onClear}
+          disabled={totalScoops === 0}
+        >
+          Clear Order
+        </button>
+      </div>
     </footer>
   );
 }

@@ -5,6 +5,8 @@ export default function FlavorCard({
   onRemove,
   onToggleFavorite,
 }) {
+  const isOutOfStockForOrder = flavor.scoopsSelected >= flavor.availableScoops;
+
   return (
     <div className={`flavor-card ${flavor.isSoldOut ? 'sold-out' : ''}`}>
       <div className="card-top">
@@ -21,7 +23,8 @@ export default function FlavorCard({
 
       {flavor.isSoldOut && <span className="sold-out-badge">Sold Out</span>}
 
-      <p className="scoops-count">Scoops: {flavor.scoopsSelected}</p>
+      <p className="stock-info">Available: {flavor.availableScoops}</p>
+      <p className="scoops-count">Selected: {flavor.scoopsSelected}</p>
 
       <div className="card-controls">
         <button
@@ -36,7 +39,7 @@ export default function FlavorCard({
           type="button"
           className="ctrl-btn"
           onClick={() => onAdd(flavor.id)}
-          disabled={flavor.isSoldOut || isLimitReached}
+          disabled={flavor.isSoldOut || isLimitReached || isOutOfStockForOrder}
         >
           +
         </button>

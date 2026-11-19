@@ -178,3 +178,28 @@
   opacity: 0.4;
   cursor: not-allowed;
 }
+
+.stock-info {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.summary-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.order-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #198754;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.order-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

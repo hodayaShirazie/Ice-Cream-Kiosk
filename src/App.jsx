@@ -5,15 +5,16 @@ import OrderSummary from './components/OrderSummary';
 import './App.css';
 
 const PRICE_PER_SCOOP = 5;
+const DEFAULT_STOCK = 5;
 
 export default function App() {
   const [flavors, setFlavors] = useState([
-    { id: 1, name: 'Vanilla', isSoldOut: false, scoopsSelected: 0, isFavorite: false },
-    { id: 2, name: 'Chocolate', isSoldOut: false, scoopsSelected: 0, isFavorite: false },
-    { id: 3, name: 'Strawberry', isSoldOut: true, scoopsSelected: 0, isFavorite: false },
-    { id: 4, name: 'Pistachio', isSoldOut: false, scoopsSelected: 0, isFavorite: false },
-    { id: 5, name: 'Mango', isSoldOut: false, scoopsSelected: 0, isFavorite: false },
-    { id: 6, name: 'Cookies & Cream', isSoldOut: false, scoopsSelected: 0, isFavorite: false },
+    { id: 1, name: 'Vanilla', isSoldOut: false, availableScoops: DEFAULT_STOCK, scoopsSelected: 0, isFavorite: false },
+    { id: 2, name: 'Chocolate', isSoldOut: false, availableScoops: DEFAULT_STOCK, scoopsSelected: 0, isFavorite: false },
+    { id: 3, name: 'Strawberry', isSoldOut: true, availableScoops: 0, scoopsSelected: 0, isFavorite: false },
+    { id: 4, name: 'Pistachio', isSoldOut: false, availableScoops: DEFAULT_STOCK, scoopsSelected: 0, isFavorite: false },
+    { id: 5, name: 'Mango', isSoldOut: false, availableScoops: DEFAULT_STOCK, scoopsSelected: 0, isFavorite: false },
+    { id: 6, name: 'Cookies & Cream', isSoldOut: false, availableScoops: DEFAULT_STOCK, scoopsSelected: 0, isFavorite: false },
   ]);
 
   const [scoopLimit] = useState(5);
@@ -32,7 +33,9 @@ export default function App() {
     if (isLimitReached) return;
     setFlavors((prev) =>
       prev.map((flavor) =>
-        flavor.id === id && !flavor.isSoldOut
+        flavor.id === id &&
+        !flavor.isSoldOut &&
+        flavor.scoopsSelected < flavor.availableScoops
           ? { ...flavor, scoopsSelected: flavor.scoopsSelected + 1 }
           : flavor
       )
@@ -51,6 +54,21 @@ export default function App() {
 
   const handleClearOrder = () => {
     setFlavors((prev) => prev.map((flavor) => ({ ...flavor, scoopsSelected: 0 })));
+  };
+
+  const handlePlaceOrder = () => {
+    if (totalScoops === 0) return;
+    setFlavors((prev) =>
+      prev.map((flavor) => {
+        const remaining = flavor.availableScoops - flavor.scoopsSelected;
+        return {
+          ...flavor,
+          availableScoops: remaining,
+          isSoldOut: remaining <= 0,
+          scoopsSelected: 0,
+        };
+      })
+    );
   };
 
   const handleToggleFavorite = (id) => {
@@ -100,6 +118,7 @@ export default function App() {
         totalPrice={totalPrice}
         favoritesCount={favoritesCount}
         onClear={handleClearOrder}
+        onPlaceOrder={handlePlaceOrder}
       />
     </div>
   );
