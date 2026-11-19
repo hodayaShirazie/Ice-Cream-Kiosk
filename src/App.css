@@ -1,0 +1,180 @@
+.kiosk-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+/* Header */
+.kiosk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Notice Area */
+.notice-area {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.notice {
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.notice-warning {
+  background-color: #fff3cd;
+  border: 1px solid #ffecb5;
+  color: #664d03;
+}
+
+.notice-info {
+  background-color: #cff4fc;
+  border: 1px solid #b6effb;
+  color: #055160;
+}
+
+/* Flavor Grid & Cards */
+.flavor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.flavor-card {
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.flavor-card.sold-out {
+  opacity: 0.55;
+  background-color: #e9ecef;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-top h2 {
+  font-size: 1.15rem;
+}
+
+.fav-btn {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #adb5bd;
+}
+
+.fav-btn.active {
+  color: #f59f00;
+}
+
+.sold-out-badge {
+  align-self: flex-start;
+  background-color: #dc3545;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.scoops-count {
+  font-size: 0.95rem;
+  color: #495057;
+}
+
+/* + / - Buttons */
+.card-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.ctrl-btn {
+  flex: 1;
+  padding: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: 1px solid #adb5bd;
+  border-radius: 6px;
+  background-color: #f1f3f5;
+  cursor: pointer;
+}
+
+.ctrl-btn:hover:not(:disabled) {
+  background-color: #dee2e6;
+}
+
+.ctrl-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Order Summary */
+.order-summary {
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.empty-note {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.favorites-note {
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+.clear-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #dc3545;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.clear-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
